@@ -31,7 +31,8 @@ namespace Core.UnitTests
                 pizza
             };
             IEnumerable<Product> products = prices.AsEnumerable();
-            Assert.AreEqual(163, valueCalculator.ValueCalc(products));
+            var sumofPrices = valueCalculator.ValueCalc(products);
+            Assert.AreEqual(163, sumofPrices, $"The method should return 163 as the price of specified products but actually returned {sumofPrices}");
         }
     }
 }

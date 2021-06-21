@@ -14,19 +14,20 @@ namespace Core.UnitTests
                 Price = 56,
                 ProductID = 1
             };
-            Assert.AreEqual("Product ID: 1, Name: Lays, Price: 56", product.ToString());
+            var productInfo = product.ToString();
+            Assert.AreEqual("Product ID: 1, Name: Lays, Price: 56", productInfo, "Actual product info provided by overridden ToString method is not correct");
         }
         [Test]
         public void Equals_ReturnsFalseIfNoProduct()
         {
             Product product = new Product();
-            Assert.IsFalse(product.Equals(null));
+            Assert.IsFalse(product.Equals(null), "The second object exists");
         }
         [Test]
         public void Equals_ReturnsTrueIfSomeProductExists()
         {
             Product someProduct = new Product();
-            Assert.IsTrue(someProduct.Equals(someProduct));
+            Assert.IsTrue(someProduct.Equals(someProduct), "The second object is missed");
         }
         [Test]
         public void Equals_ReturnsNotEmptyProduct()
@@ -37,7 +38,7 @@ namespace Core.UnitTests
                 Price = 344,
                 Name = "Candy"
             };
-            Assert.IsNotNull(product.Equals(product));
+            Assert.IsNotNull(product.Equals(product), "Some object is not specified");
         }
         [Test]
         public void GetHasCode_ReturnsHashCodeForProduct()
@@ -48,7 +49,7 @@ namespace Core.UnitTests
                 Price = 30,
                 Name = "Kinder"
             };
-            Assert.NotNull(product.GetHashCode());
+            Assert.NotNull(product.GetHashCode(), "The method did not return hashCode");
         }
     }
 }

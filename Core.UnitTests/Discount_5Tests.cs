@@ -9,7 +9,8 @@ namespace Core.UnitTests
         {
             decimal price = 100;
             Discounts.Discount_5 discount_5 = new Discounts.Discount_5();
-            Assert.AreEqual(95, discount_5.PercentageValue(price));
+            var priceWithDiscount = discount_5.PercentageValue(price);
+            Assert.AreEqual(95, priceWithDiscount, $"The expected price is 95 but was actually {priceWithDiscount}");
         }
     }
 }
