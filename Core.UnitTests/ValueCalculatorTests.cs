@@ -32,7 +32,8 @@ namespace Core.UnitTests
             };
             IEnumerable<Product> products = prices.AsEnumerable();
             var sumofPrices = valueCalculator.ValueCalc(products);
-            Assert.AreEqual(163, sumofPrices, $"The method should return 163 as the price of specified products but actually returned {sumofPrices}");
+            decimal expectedSum = 163;
+            Assert.AreEqual(expectedSum, sumofPrices, $"The method should return {expectedSum} as the price of specified products but actually returned {sumofPrices}");
         }
     }
 }

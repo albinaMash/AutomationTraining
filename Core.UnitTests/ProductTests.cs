@@ -14,8 +14,9 @@ namespace Core.UnitTests
                 Price = 56,
                 ProductID = 1
             };
-            var productInfo = product.ToString();
-            Assert.AreEqual("Product ID: 1, Name: Lays, Price: 56", productInfo, "Actual product info provided by overridden ToString method is not correct");
+            var actualProductInfo = product.ToString();
+            string expecedInfo = "Product ID: 1, Name: Lays, Price: 56";
+            Assert.AreEqual(expecedInfo, actualProductInfo, "Actual product info provided by overridden ToString method is not correct");
         }
         [Test]
         public void Equals_ReturnsFalseIfNoProduct()
