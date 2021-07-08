@@ -2,6 +2,9 @@
 using SeleniumExtras.PageObjects;
 using NUnit.Framework;
 using Task70.YandexPages;
+using System;
+using System.IO;
+using OpenQA.Selenium.Support.UI;
 
 namespace Task70
 {
@@ -16,13 +19,13 @@ namespace Task70
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How=How.XPath, Using = "//div[contains(text(), 'Войти')]")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Войти')]")]
         public IWebElement SigninButton { get; set; }
 
-        [FindsBy(How= How.XPath, Using = "//div[contains(@class, 'usermenu-link')]/a[1]/span")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'usermenu-link')]/a[1]/span")]
         public IWebElement UsernameLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='uniq269']/span")]
+        [FindsBy(How = How.CssSelector, Using = "#uniq289>span")]
         public IWebElement SignoutButton { get; set; }
 
         public void Open()
@@ -57,6 +60,23 @@ namespace Task70
 
             passwordPage.EnterPassword(password);
             passwordPage.ClickLoginButton();
+        }
+
+        public void TakeScreenshot(string testCase)
+        {
+            try
+            {
+                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+
+                var fileName = @"Screenshot " + testCase + " " + DateTime.Now.ToString("HH_mm_ss") + ".png";
+                var fileLocation = Path.Combine(@"D:\Screenshots\", fileName);
+
+                screenshot.SaveAsFile(fileLocation, ScreenshotImageFormat.Png);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

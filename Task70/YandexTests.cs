@@ -31,6 +31,7 @@ namespace Task70
             PasswordPage passwordPage = new PasswordPage(driver);
 
             homePage.Open();
+            homePage.TakeScreenshot("Login Test");
             homePage.ClickSigninButton();
             loginPage.EnterUsername("seleniumtests@tut.by");
             loginPage.ClickLoginButton();
@@ -47,6 +48,7 @@ namespace Task70
             homePage.Login("seleniumtests@tut.by", "123456789zxcvbn");
             homePage.ClickUsernameLink();
             homePage.ClickSignoutButton();
+            homePage.TakeScreenshot("Logout Test");
         }
         [OneTimeTearDown]
         public void CleanUp()
