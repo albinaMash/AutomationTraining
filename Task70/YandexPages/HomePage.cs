@@ -5,6 +5,7 @@ using Task70.YandexPages;
 using System;
 using System.IO;
 using OpenQA.Selenium.Support.UI;
+using Allure.NUnit.Attributes;
 
 namespace Task70
 {
@@ -28,26 +29,34 @@ namespace Task70
         [FindsBy(How = How.CssSelector, Using = "#uniq289>span")]
         public IWebElement SignoutButton { get; set; }
 
+        [AllureStep("Try to open home page")]
         public void Open()
         {
             driver.Navigate().GoToUrl(url);
             Assert.AreEqual("Яндекс", driver.Title);
         }
+
+        [AllureStep("Click signin")]
         public void ClickSigninButton()
         {
             SigninButton.Click();
         }
 
+        [AllureStep("Open username dropdown")]
         public void ClickUsernameLink()
         {
             UsernameLink.Click();
         }
 
+        [AllureStep("Click Выйти link")]
         public void ClickSignoutButton()
         {
-            SignoutButton.Click();
+
+            try { SignoutButton.Click(); }
+            catch { Assert.Fail("Button is not interactable"); }
         }
 
+        [AllureStep("Login with valid credentials (&username&, &password&)")]
         public void Login(string username, string password)
         {
             LoginPage loginPage = new LoginPage(driver);
