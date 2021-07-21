@@ -1,0 +1,49 @@
+﻿{
+  "allure": {
+    "directory": "allure-results",
+    "allowEmptySuites": true,
+    "enableParameters": true,
+    "allowLocalHistoryTrend": true,
+    "cleanResultDirectory": false
+  },
+
+  "categories": [
+    {
+      "name": "Problems with locators",
+      "traceRegex": ".*NoSuchElementException.*"
+    },
+    {
+      "name": "Problems with timeout",
+      "messageRegex": ".*Timed out.*",
+      "traceRegex": ".*"
+    },
+    {
+      "name": "Broken tests",
+      "matchedStatuses": ["broken"]
+    },
+    {
+      "name": "Ignored tests",
+      "matchedStatuses": ["skipped"]
+    },
+    {
+      "name": "Defected tests",
+      "matchedStatuses": ["failed"]
+    },
+    {
+      "name": "Passed tests",
+      "matchedStatuses": ["passed"]
+    }
+  ],
+
+  "environment": {
+    "runtime": [
+      {
+        "OS": "System.Environment.OS",
+        "OSVersion": "System.Environment.OSVersion",
+        "Browser": "Chrome",
+        "BrowserVersion": "Latest"
+
+      }
+    ]
+  }
+}

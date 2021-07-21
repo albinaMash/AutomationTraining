@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using System.Threading;
 
 
 namespace Task20
@@ -47,6 +48,10 @@ namespace Task20
             passwordField.Until(ExpectedConditions.ElementToBeClickable(By.Id("passp-field-passwd"))).SendKeys(password);
             loginButton2 = Driver.FindElement(By.XPath("//*[@class='Button2 Button2_size_l Button2_view_action Button2_width_max Button2_type_submit']"));
             loginButton2.Click();
+
+            //Class Thread is provided in C#. It is a static wait, which suspends the execution for specified period (miliseconds)
+            Thread.Sleep(3000); 
+
             var page = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
             page.Until(ExpectedConditions.TitleIs("яндекс"));
             Assert.AreEqual(expectedPage, Driver.Title, "It seems you are not signed in successfuly");
