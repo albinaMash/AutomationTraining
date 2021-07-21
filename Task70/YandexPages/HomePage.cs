@@ -64,19 +64,12 @@ namespace Task70
 
         public void TakeScreenshot(string testCase)
         {
-            try
-            {
                 var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
                 var fileName = @"Screenshot " + testCase + " " + DateTime.Now.ToString("HH_mm_ss") + ".png";
                 var fileLocation = Path.Combine(@"D:\Screenshots\", fileName);
 
                 screenshot.SaveAsFile(fileLocation, ScreenshotImageFormat.Png);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
         }
     }
 }
