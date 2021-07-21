@@ -3,13 +3,10 @@ using SeleniumExtras.PageObjects;
 
 namespace Task70.YandexPages
 {
-    class LoginPage
+    class LoginPage : BasePage
     {
-        private IWebDriver driver;
-        public LoginPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
+        public LoginPage(IWebDriver driver) : base(driver)
+        { 
         }
 
         [FindsBy(How = How.Id, Using = "passp-field-login")]

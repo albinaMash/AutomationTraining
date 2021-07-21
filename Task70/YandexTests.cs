@@ -8,12 +8,11 @@ namespace Task70
     [TestFixture]
     public class Tests
     {
-        private ChromeDriver driver { get; set; }
+        private static ChromeDriver driver { get; set; }
 
-        //Comment out this part due to error The SearchContext of the locator object cannot be null (Parameter 'locator') and driver declaration can not be static
-        //HomePage homePage = new HomePage(driver);
-        //LoginPage loginPage = new LoginPage(driver);
-        //PasswordPage passwordPage = new PasswordPage(driver);
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        PasswordPage passwordPage = new PasswordPage(driver);
 
         [OneTimeSetUp]
         public void Setup()
@@ -25,28 +24,24 @@ namespace Task70
 
         [Test]
         public void LoginTest()
-        {
-            HomePage homePage = new HomePage(driver);
-            LoginPage loginPage = new LoginPage(driver);
-            PasswordPage passwordPage = new PasswordPage(driver);
-
+        { 
             homePage.Open();
             homePage.ClickSigninButton();
             loginPage.EnterUsername("seleniumtests@tut.by");
             loginPage.ClickLoginButton();
             passwordPage.EnterPassword("123456789zxcvbn");
             passwordPage.ClickLoginButton();
+            homePage.CheckUserIsLoggedin();
         }
 
         [Test]
         public void LogoutTest()
-        {
-            HomePage homePage = new HomePage(driver);
-           
+        {  
             homePage.Open();
             homePage.Login("seleniumtests@tut.by", "123456789zxcvbn");
             homePage.ClickUsernameLink();
             homePage.ClickSignoutButton();
+            homePage.CheckUserIsSignedOut();
         }
         [OneTimeTearDown]
         public void CleanUp()
