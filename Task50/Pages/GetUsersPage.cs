@@ -19,11 +19,14 @@ namespace Task50
             this.driver.Navigate().GoToUrl(url);
         }
 
-        public void WaitForUserToBeDisplayed()
+        public void ClickGetNewUserButton()
         {
             getNewUserButton = driver.FindElement(By.Id("save"));
             getNewUserButton.Click();
+        }
 
+        public void CheckUserInfoIsDisplayed()
+        {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             IWebElement userInfo = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='loading']/img")));
 

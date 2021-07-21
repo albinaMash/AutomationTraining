@@ -15,10 +15,12 @@ namespace Task50
         }
 
         [Test]
-        public void UserInfoIsDisplayed()
+        public void UserInfoIsDisplayedTest()
         {
             GetUserPage getUserPage = new GetUserPage(driver);
-            getUserPage.WaitForUserToBeDisplayed();
+
+            getUserPage.ClickGetNewUserButton();
+            getUserPage.CheckUserInfoIsDisplayed();
         }
 
         [TearDown]

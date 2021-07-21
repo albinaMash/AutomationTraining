@@ -17,10 +17,10 @@ namespace Task50
             this.driver.Navigate().GoToUrl(url);
         }
 
-        public void SelectDropdownItem()
+        public void SelectDropdownItem(string dropdownItemValue)
         {
             SelectElement dropdown = new SelectElement(driver.FindElement(By.Name("example_length")));
-            dropdown.SelectByValue("10");
+            dropdown.SelectByValue(dropdownItemValue);
             Assert.AreEqual(1, dropdown.AllSelectedOptions.Count);
         }
 

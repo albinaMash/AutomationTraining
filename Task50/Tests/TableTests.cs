@@ -18,7 +18,7 @@ namespace Task50
         public void TableRowsReturningTest()
         {
             TablePage tablePage = new TablePage(driver);
-            tablePage.SelectDropdownItem();
+            tablePage.SelectDropdownItem("10");
             tablePage.ReturnObjects();
         }
     }

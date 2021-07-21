@@ -19,6 +19,7 @@ namespace Task50
         {
             MultiselectPage multiselectPage = new MultiselectPage(driver);
             multiselectPage.SelectThreeOptions();
+            multiselectPage.CheckTheAmountOfSelectedOptions(3);
         }
 
         [TearDown]
