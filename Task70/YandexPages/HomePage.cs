@@ -51,9 +51,7 @@ namespace Task70
         [AllureStep("Click Выйти link")]
         public void ClickSignoutButton()
         {
-
-            try { SignoutButton.Click(); }
-            catch { Assert.Fail("Button is not interactable"); }
+            SignoutButton.Click(); 
         }
 
         [AllureStep("Login with valid credentials (&username&, &password&)")]
