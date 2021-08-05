@@ -7,13 +7,15 @@ using System;
 using System.IO;
 using Task70.YandexPages;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 
 namespace Task70
 {
     [TestFixture]
     public class Tests: AllureReport
     {
-        private ChromeDriver driver { get; set; }
+        private IWebDriver driver { get; set; }
+        private string nodeURL;
 
         [OneTimeSetUp]
         public void SetupForAllure()
@@ -24,7 +26,13 @@ namespace Task70
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
+            nodeURL = "http://localhost:4444/wd/hub";
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+            desiredCapabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.WinNT));
+            desiredCapabilities.SetCapability(CapabilityType.BrowserName, "firefox");
+            desiredCapabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.WinNT));
+            driver = new RemoteWebDriver(new Uri(nodeURL), desiredCapabilities);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         }
