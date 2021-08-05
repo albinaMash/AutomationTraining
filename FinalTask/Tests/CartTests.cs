@@ -36,6 +36,7 @@ namespace FinalTask.Tests
             categoryPage.AddThreeItemsToCart();
             categoryPage.CheckAddedItems();
             categoryPage.OpenCartPage();
+            cartPage.WaitForTotalPrice();
             cartPage.CheckTotalPrice();
         }
     }

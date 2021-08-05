@@ -29,13 +29,13 @@ namespace FinalTask.AutomationResources
         }
         public IWebDriver CreateChromeDriver()
         {
-            var directoryWithChromeDriver = GetChromeBinaryLocationInAutomationResources();
+            var directoryWithChromeDriver = Environment.CurrentDirectory;
             return new ChromeDriver(directoryWithChromeDriver);
         }
 
         public IWebDriver CreateFirefoxDriver()
         {
-            var directoryWithFirefoxDriver = GetFirefoxBinaryLocationInAutomationResources();
+            var directoryWithFirefoxDriver = Environment.CurrentDirectory;
             return new FirefoxDriver(directoryWithFirefoxDriver);
         }
 
@@ -63,18 +63,6 @@ namespace FinalTask.AutomationResources
             desiredCapabilities.SetCapability(CapabilityType.BrowserName, "firefox");
             desiredCapabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.WinNT));
             return new RemoteWebDriver(new Uri(nodeURL), desiredCapabilities);
-        }
-
-        private string GetChromeBinaryLocationInAutomationResources()
-        {
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return Path.GetFullPath(Path.Combine(outPutDirectory, @"..\..\..\bin\Debug"));
-        }
-
-        private string GetFirefoxBinaryLocationInAutomationResources()
-        {
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return Path.GetFullPath(Path.Combine(outPutDirectory, @"..\..\..\bin\Debug"));
         }
     }
 }

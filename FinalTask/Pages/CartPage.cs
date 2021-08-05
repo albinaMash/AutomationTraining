@@ -19,12 +19,17 @@ namespace FinalTask.Pages
             get; set;
         }
 
-        [AllureStep("Check that total products price is returened")]
-        public void CheckTotalPrice()
+        //I am sure we don`t need this method cause CategoryPage.OpenCartPage waits until page is loaded and returns cart page 
+        public void WaitForTotalPrice()
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("total_product")));
-            Assert.IsNotNull(TotalProductsPrice, "Total price is empty");
+        }
+
+        [AllureStep("Check that total products price is returened")]
+        public bool CheckTotalPrice()
+        {
+            return TotalProductsPrice.Displayed; 
         }
     }
 }

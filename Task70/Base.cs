@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
 using System.IO;
+using TestContext = Microsoft.VisualStudio.TestTools.UnitTesting.TestContext;
 
 namespace Task70
 {
@@ -15,6 +17,7 @@ namespace Task70
         protected string os;
         private string sauceUsername = Environment.GetEnvironmentVariable("SAUCE_USERNAME");
         private string sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
+        private TestContext TestContext { get; set; }
         public Base(string browser, string version, string os)
         {
             this.browser = browser;
@@ -35,7 +38,7 @@ namespace Task70
             caps.SetCapability("browserName", browser);
             caps.SetCapability("platformName", os);
             caps.SetCapability("browserVersion", version);
-            caps.SetCapability("name", TestContext.CurrentContext.Test.Name);
+            caps.SetCapability("name", TestContext.TestName);
             
             driver = new RemoteWebDriver(new Uri($"https://{sauceUsername}:{sauceAccessKey}@ondemand.eu-central-1.saucelabs.com:443/wd/hub"), caps);
 
@@ -46,7 +49,7 @@ namespace Task70
         public void CleanUp()
         {
 
-            if (TestContext.CurrentContext.Result.FailCount > 0)
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             {
                 TakeScreenshot("Test is failed");
             }
